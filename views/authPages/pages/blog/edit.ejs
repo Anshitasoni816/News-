@@ -1,0 +1,49 @@
+<%- include("../../components/header.ejs") %>
+    <div class="conatiner">
+        <h4>Edit Blog</h4>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <form action="/blog-update/<%=  %>" method="POST" enctype="multipart/form-data">
+                <input class="form-control mt-3" type="text" name="title" value="<%=  %>" placeholder="Enter title">
+                <textarea class="form-control mt-2" name="description" id=""
+                    placeholder="Enter description"><%=  %></textarea>
+                <!-- textarea dosen't have value attribute -->
+                <input type="file" name="blogImage" class="form-control mt-3">
+                <img class="form-control mt-2" src="<%=  %>" alt="image" style="height: 150px;">
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                
+                <% if (successMessage.length> 0) { %>
+                    <div class="alert-success mt-3 mb-3 d-flex align-items-center justify-content-center"
+                        style="color: rgb(27, 181, 27);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-check2-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0" />
+                            <path
+                                d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
+                        </svg>
+                        <div class="ms-2">
+                            <%= successMessage %>
+                        </div>
+                    </div>
+                    <% } %>
+
+
+                        <% if (errorMessage.length> 0) { %>
+                            <div class="alert-danger mt-3 mb-3 d-flex align-items-center justify-content-center"
+                                style="color: rgb(209, 8, 8);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                </svg>
+                                <div class="ms-2">
+                                    <%= errorMessage %>
+                                </div>
+                            </div>
+                            <% } %>
+            </form>
+            <div class="col-md-8"></div>
+        </div>
+    </div>
+    <%- include("../../components/footer.ejs") %>

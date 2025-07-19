@@ -1,0 +1,12 @@
+<%- include('../../components/header.ejs') %>
+    <div class="container">
+        <h4>Category details</h4>
+        <h2>
+            <%= categoryDetails.title %>
+        </h2>
+        <img style="height: 150px;" src="<%= categoryDetails.categorySecureUrl%>" alt="">
+        <p>
+            <%= categoryDetails.description %>
+        </p>
+    </div>
+    <%- include('../../components/footer.ejs') %>

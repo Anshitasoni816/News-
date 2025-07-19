@@ -1,0 +1,113 @@
+<%-include("../../components/header.ejs")  %>
+
+<div class="container mt-5">
+
+      <div class="row">
+
+         <div class="col-md-4"></div>
+
+         <div class="col-md-4 border border-2" style="border-radius: 10px;">
+
+            <h4 style="text-align: center;" class="mt-2">Edit News</h4>
+
+            <form action="/news-update/<%= newsEdit.id %>" method="POST" enctype="multipart/form-data">
+
+               <select class="form-select mt-4"  name="categoryId" id="" > 
+
+                  <!-- why we have taken name = categoryId in select ? 
+                  The categoryName contained id of category how we'll get to know that it'll contain id 
+                  (we should write categoryId in place of categoryName)
+                  categoryName.id 
+                  -->
+
+                  <option value="">Select category</option>
+
+                  <% categoryData.forEach((element,index)=> {%>
+                     
+                     <option value="<%= element.id %>" <%= newsEdit.categoryId == element.id  ? 'selected' : ''%>>
+                        <%= element.title %>
+                     </option>
+
+                     <% }) %>
+
+                     <!-- selected is an html keyword -->
+               </select>
+           
+
+               <input class="form-control mt-2" type="text" value="<%= newsEdit.title %>" name="title" placeholder="Enter title">
+
+               <textarea class="form-control mt-2" name="description" id="" placeholder="Enter description"><%= newsEdit.description %></textarea>
+
+               <input class="form-control mt-2" type="file" name="newsImage" id="">
+
+               <img class="mt-2" style="height: 50px;" src="<%= newsEdit.newsSecureUrl %>" alt="image">
+
+               <!-- <a class="btn btn-danger mt-2 ms-5" href="/news/remove-news-image/<%#= newsEdit.id %>">Remove Image</a> -->
+
+               <input class="form-control mt-2" type="file" 
+               name="newsImage1" id="">
+
+               <img class="mt-2" style="height: 50px;" src="<%= newsEdit.newsSecureUrl1 %>" alt="image1">
+
+                <!-- <a class="btn btn-danger mt-2 ms-5" href="/news/remove-news-image1/<%#= newsEdit.id %>">Remove Image</a> -->
+
+               <div style="text-align: center;" class="mt-5">
+
+                  <button class="btn btn-primary mt-2 mb-3" type="submit" style="width: 200px;">Submit</button>
+
+               </div>
+  
+                     <% if (errorMessage.length> 0) { %>
+
+                        <div class="mt-3 mb-3 d-flex align-items-center justify-content-center"
+                           style="color: rgb(209, 8, 8);">
+
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                              class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+
+                              <path
+                                 d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+
+                           </svg>
+
+                           <div class="ms-2">
+
+                              <%= errorMessage %>
+
+                           </div>
+                           
+                        </div>
+
+                        <% } %>
+                        
+            </form>
+
+            <form action="/remove-image" method="POST">
+
+               <input type="hidden" value="<%= newsEdit.id %> " name="newsId">
+
+               <input type="hidden" value="firstImage" name="newsImage">
+
+               <button type="submit" class="btn btn-danger">Remove News Image</button>
+
+            </form>
+
+            <form action="/remove-image" method="POST">
+
+               <input type="hidden" value="<%= newsEdit.id %> " name="newsId">
+
+               <input type="hidden" value="secondImage" name="newsImage">
+
+               <button type="submit" class="btn btn-danger">Remove News Image1</button>
+
+            </form>
+
+         </div>
+
+         <div class="col-md-4"></div>
+
+      </div>
+      
+   </div>
+    
+<%- include("../../components/footer.ejs") %>

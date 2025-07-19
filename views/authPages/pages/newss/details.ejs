@@ -1,0 +1,36 @@
+<%- include("../../components/header.ejs") %>
+
+  <div class="container">
+
+    <h2>News Details</h2>
+
+    <p class="mt-4">
+    <p>
+      <b>Category :</b>
+      <%= newsDetails.categoryTitle%>
+    </p>
+    </p>
+
+    <p class="mt-2">
+    <p>
+      <b>Title : </b>
+      <%= newsDetails.newsTitle %>
+    </p>
+    </p>
+
+    <p>
+      <b>Image : <img style="height: 50px;" src="<%= newsDetails.newsSecureUrl %>" alt="news Image"></b>
+    </p>
+
+    <p>
+      <b>Image1 : <img style="height: 50px;" src="<%= newsDetails.newsSecureUrl1 %>" alt="news Image"></b>
+    </p>
+
+    <p>
+      <b>description :</b>
+      <%= newsDetails.newsDescription %>
+    </p>
+
+  </div>
+
+  <% include("../../components/footer.ejs") %>
